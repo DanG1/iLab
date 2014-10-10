@@ -41,7 +41,6 @@ void printTableOfReplaceVariants(int N){
 
 }
 
-//DO NOT KNOW, WHETHER I NEED THESE DEBUGGING PEACES OF COMMITTED CODE:
 
 
 int main(){
