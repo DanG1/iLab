@@ -22,7 +22,6 @@ return 0;
 }
 */
 
-////// DOES NOT WORK PROPERLY
 
 int contains_squares(int num);
 
