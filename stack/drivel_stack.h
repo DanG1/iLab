@@ -11,16 +11,18 @@ typedef struct
     stk_value * data;
     int next;
    //double * stk_ptr;
-    size_t size;
+    int size;
     int last_operation_status;
 } drivel_stk_double;
 
-drivel_stk_double drivel_stk_double_ctor(size_t size){
-    drivel_stk_double stk;
-        stk.size = size;
-        stk.next = 0;
-        stk.data = ( stk_value *) calloc (size, sizeof(stk_value));
-    if (!stk.data) assert ((printf("errmem in drivel_stk_double_ctor"),0));
+drivel_stk_double* drivel_stk_double_ctor(int size){
+    int i;
+    drivel_stk_double* stk;
+        stk->size = size;
+        stk->next = 0;
+        stk->data = ( stk_value *) malloc (size* sizeof(stk_value));
+    drivel_stk_double_dump(stk);
+    if (!stk->data) assert ((printf("errmem in drivel_stk_double_ctor"),0));
     return stk;
 }
 
@@ -41,9 +43,10 @@ int drivel_stk_double_push( drivel_stk_double * stk, stk_value data)
 }
 
 void drivel_stk_double_swap( drivel_stk_double * this);
+
 stk_value drivel_stk_double_top( drivel_stk_double * stk)
 {
-    return (stk->data)[stk->next - 1];
+    return stk->data[stk->next - 1];
 }
 
 int drivel_stk_double_pop( drivel_stk_double * stk)
@@ -54,6 +57,12 @@ int drivel_stk_double_pop( drivel_stk_double * stk)
     return 0;
 }
 
-void drivel_stk_double_dump( drivel_stk_double * this);
+void drivel_stk_double_dump( drivel_stk_double * stk)
+{
+    int i;
+    for (i = 0; i < stk->size; i++)
+        printf("%d\t", stk->data[(stk->size - 1) - i]);
+    printf("\nFirst free slot out of [0..%d] is %d\n", stk->size - 1, stk->next);
+}
 
 #endif
