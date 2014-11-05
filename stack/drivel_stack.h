@@ -14,7 +14,8 @@ typedef struct
     int last_operation_status;
 } drivel_stk_double;
 
-drivel_stk_double* drivel_stk_double_ctor(int size){
+drivel_stk_double* drivel_stk_double_ctor(int size)
+{
     drivel_stk_double* stk;
     stk = (drivel_stk_double *) calloc(1, sizeof(drivel_stk_double));
         stk->size = size;
@@ -24,9 +25,24 @@ drivel_stk_double* drivel_stk_double_ctor(int size){
     return stk;
 }
 
-int drivel_stk_double_delete( drivel_stk_double * this);
-size_t drivel_stk_double_size( drivel_stk_double * this);
-int drivel_stk_double_empty( drivel_stk_double * this);
+int drivel_stk_double_delete( drivel_stk_double * stk)
+{
+    stk->current = stk->data - 1;
+    free(stk->data);
+    free(stk);
+return 0;
+}
+
+int drivel_stk_double_size( drivel_stk_double * stk)
+{
+    return (stk->current - (stk->data - 1));
+}
+
+int drivel_stk_double_empty( drivel_stk_double * stk)
+{
+    int empt = (stk->current + 1) == (stk->data);
+    return empt;
+}
 
 int drivel_stk_double_push( drivel_stk_double * stk, stk_value data)
 {
@@ -53,7 +69,13 @@ int drivel_stk_double_push( drivel_stk_double * stk, stk_value data)
     return 0;
 }
 
-void drivel_stk_double_swap( drivel_stk_double * this);
+void drivel_stk_double_swap( drivel_stk_double * stk)
+{
+    stk_value temp;
+    temp = *(stk->current);
+    *(stk->current) = *(stk->current - 1);
+    *(stk->current - 1) = temp;
+}
 
 stk_value drivel_stk_double_top( drivel_stk_double * stk)
 {
@@ -63,7 +85,7 @@ stk_value drivel_stk_double_top( drivel_stk_double * stk)
 stk_value drivel_stk_double_pop( drivel_stk_double * stk)
 {
     /// If stack is empty or smth went wrong
-    if (stk->current == stk->data) return 777;
+    if (stk->current == stk->data - 1) return 777;
     /// If everything's OK
     (stk->current)--;
 
