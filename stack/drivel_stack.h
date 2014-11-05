@@ -14,18 +14,18 @@ typedef struct
     int last_operation_status;
 } drivel_stk_double;
 
-drivel_stk_double* drivel_stk_double_ctor(int size)
+drivel_stk_double* drivelStkDoubleCtor(int size)
 {
     drivel_stk_double* stk;
     stk = (drivel_stk_double *) calloc(1, sizeof(drivel_stk_double));
         stk->size = size;
         stk->data = (stk_value*) calloc (size, sizeof(stk_value));
         stk->current = stk->data - 1;
-    if ((!stk->data)||(!stk->current)) assert ((printf("some prt==0 in drivel_stk_double_ctor"),0));
+    if ((!stk->data)||(!stk->current)) assert ((printf("some prt==0 in drivelStkDoubleCtor"),0));
     return stk;
 }
 
-int drivel_stk_double_delete( drivel_stk_double * stk)
+int drivelStkDoubleDelete( drivel_stk_double * stk)
 {
     stk->current = stk->data - 1;
     free(stk->data);
@@ -33,18 +33,18 @@ int drivel_stk_double_delete( drivel_stk_double * stk)
 return 0;
 }
 
-int drivel_stk_double_size( drivel_stk_double * stk)
+int drivelStkDoubleSize( drivel_stk_double * stk)
 {
     return (stk->current - (stk->data - 1));
 }
 
-int drivel_stk_double_empty( drivel_stk_double * stk)
+int drivelStkDoubleEmpty( drivel_stk_double * stk)
 {
     int empt = (stk->current + 1) == (stk->data);
     return empt;
 }
 
-int drivel_stk_double_push( drivel_stk_double * stk, stk_value data)
+int drivelStkDoublePush( drivel_stk_double * stk, stk_value data)
 {
     int shift;
     ///When everything's OK
@@ -69,7 +69,7 @@ int drivel_stk_double_push( drivel_stk_double * stk, stk_value data)
     return 0;
 }
 
-void drivel_stk_double_swap( drivel_stk_double * stk)
+void drivelStkDoubleSwap( drivel_stk_double * stk)
 {
     stk_value temp;
     temp = *(stk->current);
@@ -77,12 +77,12 @@ void drivel_stk_double_swap( drivel_stk_double * stk)
     *(stk->current - 1) = temp;
 }
 
-stk_value drivel_stk_double_top( drivel_stk_double * stk)
+stk_value drivelStkDoubleTop( drivel_stk_double * stk)
 {
     return *(stk->current);
 }
 
-stk_value drivel_stk_double_pop( drivel_stk_double * stk)
+stk_value drivelStkDoublePop( drivel_stk_double * stk)
 {
     /// If stack is empty or smth went wrong
     if (stk->current == stk->data - 1) return 777;
@@ -92,7 +92,7 @@ stk_value drivel_stk_double_pop( drivel_stk_double * stk)
     return 0;
 }
 
-void drivel_stk_double_dump( drivel_stk_double * stk)
+void drivelStkDoubleDump( drivel_stk_double * stk)
 {
     int i;
     printf("\nSlot values from %d to 0:\n", stk->size - 1);
