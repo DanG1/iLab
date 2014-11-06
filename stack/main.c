@@ -4,38 +4,31 @@
 #include <math.h>
 #include <stdfix.h>
 #include "drivel_stack.h"
+#include "stack_processor.h"
 
 
 int main()
 {
-    int k=7;
-    int stk_counter;
-    drivel_stk_double *stk = drivelStkDoubleCtor(k);
+   // int i = 0;
+    stk_value_t a[12];
+    stk_value_t result;
 
-    drivelStkDoubleDump(stk);
+    a[0] = STKCMD_PUSH;
+    a[1] = 5;
+    a[2] = STKCMD_PUSH;
+    a[3] = 6;
+    a[4] = STKCMD_ADD;
+    a[5] = STKCMD_PUSH;
+    a[6] = 3;
+    a[7] = STKCMD_PUSH;
+    a[8] = 1;
+    a[9] = STKCMD_MUL;
+    a[10] = STKCMD_POP4;
+    a[11] = STKCMD_EXIT;
 
-    for (stk_counter = 0; stk_counter < k; stk_counter++)
-    {
-        printf("%d\n",drivelStkDoublePush(stk, stk_counter)); //Пушаю, дампаю и печатаю код (0 - нормально)
-      //  drivel_stk_double_dump(stk);
-    }
+    result = exeStkCmdLst (a, 12);
 
-    drivelStkDoubleSwap(stk);
+    printf("%lf",result);
 
-   // drivel_stk_double_dump(stk);
-//    if (drivel_stk_double_empty(stk)) drivel_stk_double_delete(stk);
-
-    drivelStkDoubleDump(stk);
-
-
-    printf("\n\nIs stack empty?: %d\n\n",drivelStkDoubleEmpty(stk));
-
-while (!drivelStkDoubleEmpty(stk)) {
-        drivelStkDoublePop(stk);
-        printf("\n\nIs stack empty?: %d\n\n", drivelStkDoubleEmpty(stk));
-        }
-
-drivelStkDoubleDelete(stk);
-drivelStkDoubleDump(stk);
     return 0;
 }
