@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1415925147 source:d:\projects\stack\main.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	<math.h>
+	<stdfix.h>
+	"drivel_stack.h"
+	"stack_processor.h"
+	"errlib.h"
+
+1415925648 d:\projects\stack\drivel_stack.h
+	<stdint.h>
+	<stddef.h>
+	<assert.h>
+	<stdio.h>
+	<malloc.h>
+	"errlib.h"
+
+1415925700 d:\projects\stack\stack_processor.h
+	"drivel_stack.h"
+
+1415925656 source:d:\projects\stack\drivel_stack.c
+	<stdint.h>
+	<stddef.h>
+	"drivel_stack.h"
+	"errlib.h"
+
+1415925814 d:\projects\stack\errlib.h
+
+1415925697 source:d:\projects\stack\stack_processor.c
+	"stack_processor.h"
+

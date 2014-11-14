@@ -5,13 +5,13 @@
 #include <stdfix.h>
 #include "drivel_stack.h"
 #include "stack_processor.h"
-
+#include "errlib.h"
 
 int main()
 {
-   // int i = 0;
-    stk_value_t a[12];
-    stk_value_t result;
+   return 0;
+   /* stk_value_t a[12];
+   // stk_value_t result = 0;
 
     a[0] = STKCMD_PUSH;
     a[1] = 5;
@@ -26,9 +26,9 @@ int main()
     a[10] = STKCMD_POP4;
     a[11] = STKCMD_EXIT;
 
-    result = exeStkCmdLst (a, 12);
+   // result = exeStkCmdLst (a, 12);
 
-    printf("%lf",result);
+    //printf("%lf\n",result);
 
-    return 0;
+    return 0;*/
 }
